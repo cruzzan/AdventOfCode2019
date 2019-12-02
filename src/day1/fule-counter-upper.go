@@ -1,27 +1,8 @@
 package day1
 
 import (
-	input_converter "AdventOfCode2019/src/input-converter"
-	input_reader "AdventOfCode2019/src/input-reader"
-	"fmt"
 	"math"
 )
-
-func Task1() {
-	lines := input_reader.ReadLines("resources/d1_t1.txt")
-	modules := input_converter.StringToInt64(lines)
-	fuel := SumFuelNet(modules)
-
-	fmt.Println("Task 1: Fuel required is", fuel)
-}
-
-func Task2() {
-	lines := input_reader.ReadLines("resources/d1_t1.txt")
-	modules := input_converter.StringToInt64(lines)
-	fuel := SumFuelGross(modules)
-
-	fmt.Println("Task 2: Fuel required is", fuel)
-}
 
 func SumFuelNet(modules []int64) int {
 	sum := 0

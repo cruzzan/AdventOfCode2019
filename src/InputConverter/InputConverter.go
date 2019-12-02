@@ -1,4 +1,4 @@
-package input_converter
+package InputConverter
 
 import (
 	"github.com/sirupsen/logrus"
