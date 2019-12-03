@@ -14,6 +14,7 @@ func main() {
 	day1.Task2()
 
 	day2.Task1()
+	day2.Task2()
 
 	os.Exit(0)
 }

@@ -18,3 +18,12 @@ func Task1() {
 
 	fmt.Println("Task 1: Back up state", output[0])
 }
+
+func Task2()  {
+	lines := inputReader.ReadCsv("resources/d2_t1.txt")
+	instructions := InputConverter.StringToInt(lines)
+
+	in1, in2 := ReverseIntCodeProgram(instructions, 19690720, 0, 99)
+
+	fmt.Println("Task 2: Reverseengineer inputs i1:", in1, "i2:", in2, ",as desired output:", 100 * in1 +in2)
+}
