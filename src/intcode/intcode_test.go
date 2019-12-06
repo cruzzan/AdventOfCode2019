@@ -41,7 +41,7 @@ func TestReverseIntCodeProgram(t *testing.T) {
 		{inInsctructions: []int{2, 3, 0, 0, 99}, inOutput: 0, inMin: 0, inMax: 100, wantIn1: 0, wantIn2: 1},
 	}
 
-	for key, c := range cases {
+	for _, c := range cases {
 		got1, got2 := ReverseIntCodeProgram(c.inInsctructions, c.inOutput, c.inMin, c.inMax)
 
 		if got1 != c.wantIn1 {
