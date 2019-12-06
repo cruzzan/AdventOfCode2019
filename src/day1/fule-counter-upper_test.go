@@ -3,8 +3,8 @@ package day1
 import "testing"
 
 func TestCalcModuleFuelNeed(t *testing.T) {
-	tests := []struct{
-		in int64
+	tests := []struct {
+		in   int64
 		want int
 	}{
 		{in: 12, want: 2},

@@ -8,7 +8,7 @@ import (
 func StringToInt64(i []string) []int64 {
 	res := make([]int64, 0)
 
-	for _, val := range i{
+	for _, val := range i {
 		conv, err := strconv.Atoi(val)
 
 		if err != nil {
@@ -24,7 +24,7 @@ func StringToInt64(i []string) []int64 {
 func StringToInt(i []string) []int {
 	res := make([]int, 0)
 
-	for _, val := range i{
+	for _, val := range i {
 		conv, err := strconv.Atoi(val)
 
 		if err != nil {

@@ -3,16 +3,16 @@ package day6
 import "testing"
 
 func TestCount(t *testing.T) {
-	cases := []struct{
-		in [][]string
+	cases := []struct {
+		in   [][]string
 		want int
 	}{
 		{
-			in: [][]string{{"COM", "B"},{"B", "C"},{"C", "D"}},
+			in:   [][]string{{"COM", "B"}, {"B", "C"}, {"C", "D"}},
 			want: 6,
 		},
 		{
-			in: [][]string{{"COM", "B"},{"B", "C"},{"C", "D"},{"D", "E"},{"E", "F"},{"B", "G"},{"G", "H"},{"D", "I"},{"E", "J"},{"J", "K"},{"K", "L"}},
+			in:   [][]string{{"COM", "B"}, {"B", "C"}, {"C", "D"}, {"D", "E"}, {"E", "F"}, {"B", "G"}, {"G", "H"}, {"D", "I"}, {"E", "J"}, {"J", "K"}, {"K", "L"}},
 			want: 42,
 		},
 	}
@@ -27,23 +27,23 @@ func TestCount(t *testing.T) {
 }
 
 func TestTransfersBetween(t *testing.T) {
-	cases := []struct{
-		in [][]string
-		inOrg string
+	cases := []struct {
+		in     [][]string
+		inOrg  string
 		inDest string
-		want int
+		want   int
 	}{
 		{
-			in: [][]string{{"COM", "B"},{"B", "C"},{"C", "D"},{"D", "E"},{"E", "F"},{"B", "G"},{"G", "H"},{"D", "I"},{"E", "J"},{"J", "K"},{"K", "L"}},
-			inOrg: "F",
+			in:     [][]string{{"COM", "B"}, {"B", "C"}, {"C", "D"}, {"D", "E"}, {"E", "F"}, {"B", "G"}, {"G", "H"}, {"D", "I"}, {"E", "J"}, {"J", "K"}, {"K", "L"}},
+			inOrg:  "F",
 			inDest: "L",
-			want: 2,
+			want:   2,
 		},
 		{
-			in: [][]string{{"COM", "B"},{"B", "C"},{"C", "D"},{"D", "E"},{"E", "F"},{"B", "G"},{"G", "H"},{"D", "I"},{"E", "J"},{"J", "K"},{"K", "L"},{"K", "YOU"},{"I", "SAN"}},
-			inOrg: "YOU",
+			in:     [][]string{{"COM", "B"}, {"B", "C"}, {"C", "D"}, {"D", "E"}, {"E", "F"}, {"B", "G"}, {"G", "H"}, {"D", "I"}, {"E", "J"}, {"J", "K"}, {"K", "L"}, {"K", "YOU"}, {"I", "SAN"}},
+			inOrg:  "YOU",
 			inDest: "SAN",
-			want: 4,
+			want:   4,
 		},
 	}
 

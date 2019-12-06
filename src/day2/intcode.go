@@ -36,7 +36,7 @@ func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (in
 		in2 := min
 		for ; in2 <= max && in2 < len(instructions); in2++ {
 			i := make([]int, len(instructions))
-			copy(i ,instructions)
+			copy(i, instructions)
 
 			i[1] = in1
 			i[2] = in2
@@ -49,5 +49,5 @@ func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (in
 		}
 	}
 
-	return min - 1, min -1
+	return min - 1, min - 1
 }

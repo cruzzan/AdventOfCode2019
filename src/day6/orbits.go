@@ -1,7 +1,5 @@
 package day6
 
-
-
 func Count(m [][]string) int {
 	count := 0
 

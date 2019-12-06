@@ -33,15 +33,12 @@ func SumFuelGross(modules []int64) int {
 			totalFuel = totalFuel + delta
 		}
 
-
 		sum = sum + totalFuel
 	}
-
-
 
 	return sum
 }
 
 func CalcFuelNeed(m int64) int {
-	return int(math.Floor(float64(m/3)))-2
+	return int(math.Floor(float64(m/3))) - 2
 }
