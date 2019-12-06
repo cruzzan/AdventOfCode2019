@@ -16,5 +16,5 @@ func Task2() {
 	orbitMap := inputReader.ReadCsv("resources/d6_t1.txt", ')')
 	c := TransfersBetween(orbitMap, "YOU", "SAN")
 
-	fmt.Println("Task 1: Orbital transfer count", c)
+	fmt.Println("Task 2: Orbital transfer count", c)
 }
