@@ -7,8 +7,8 @@ import (
 )
 
 func Task1() {
-	lines := inputReader.ReadCsv("resources/d2_t1.txt")
-	instructions := InputConverter.StringToInt(lines)
+	lines := inputReader.ReadCsv("resources/d2_t1.txt", ',')
+	instructions := InputConverter.StringToInt(lines[0])
 
 	// Prep the input data
 	instructions[1] = 12
@@ -20,8 +20,8 @@ func Task1() {
 }
 
 func Task2()  {
-	lines := inputReader.ReadCsv("resources/d2_t1.txt")
-	instructions := InputConverter.StringToInt(lines)
+	lines := inputReader.ReadCsv("resources/d2_t1.txt", ',')
+	instructions := InputConverter.StringToInt(lines[0])
 
 	in1, in2 := ReverseIntCodeProgram(instructions, 19690720, 0, 99)
 

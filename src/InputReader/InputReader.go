@@ -27,25 +27,27 @@ func ReadLines(file string) []string {
 	return res
 }
 
-func ReadCsv(file string) []string {
+func ReadCsv(file string, del rune) [][]string {
 	res := make([][]string, 0)
 	f, err := os.Open(file)
 
 	if err != nil {
 		logrus.WithError(err).Error("Could not open file")
-		return []string{}
+		return [][]string{}
 	}
 
 	defer f.Close()
 
 	r := csv.NewReader(f)
 
+	r.Comma = del
+
 	res, err = r.ReadAll()
 
 	if err != nil {
 		logrus.WithError(err).Error("Could not read file")
-		return []string{}
+		return [][]string{}
 	}
 
-	return res[0]
+	return res
 }
