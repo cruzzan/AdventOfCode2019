@@ -3,6 +3,7 @@ package main
 import (
 	"AdventOfCode2019/src/day1"
 	"AdventOfCode2019/src/day2"
+	"AdventOfCode2019/src/day4"
 	"AdventOfCode2019/src/day6"
 	"fmt"
 	"os"
@@ -16,6 +17,9 @@ func main() {
 
 	day2.Task1()
 	day2.Task2()
+
+	day4.Task1()
+	day4.Task2()
 
 	day6.Task1()
 	day6.Task2()
