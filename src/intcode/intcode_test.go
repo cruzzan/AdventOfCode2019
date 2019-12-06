@@ -1,4 +1,4 @@
-package day2
+package intcode
 
 import "testing"
 
@@ -42,7 +42,6 @@ func TestReverseIntCodeProgram(t *testing.T) {
 	}
 
 	for key, c := range cases {
-		println(key)
 		got1, got2 := ReverseIntCodeProgram(c.inInsctructions, c.inOutput, c.inMin, c.inMax)
 
 		if got1 != c.wantIn1 {
