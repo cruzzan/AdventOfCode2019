@@ -81,7 +81,7 @@ func getOpCode(i int) int {
 }
 
 func getParam1Mode(i int) int {
-	if ((i%1000) / 100) >= 1 {
+	if ((i % 1000) / 100) >= 1 {
 		return 1
 	}
 
@@ -89,7 +89,7 @@ func getParam1Mode(i int) int {
 }
 
 func getParam2Mode(i int) int {
-	if ((i%10000) / 1000) >= 1 {
+	if ((i % 10000) / 1000) >= 1 {
 		return 1
 	}
 
@@ -97,7 +97,7 @@ func getParam2Mode(i int) int {
 }
 
 func getParam3Mode(i int) int {
-	if ((i%100000) / 10000) >= 1 {
+	if ((i % 100000) / 10000) >= 1 {
 		return 1
 	}
 

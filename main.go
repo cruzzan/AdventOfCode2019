@@ -6,26 +6,46 @@ import (
 	"AdventOfCode2019/src/day4"
 	"AdventOfCode2019/src/day5"
 	"AdventOfCode2019/src/day6"
-	"fmt"
+	"github.com/sirupsen/logrus"
+	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
 )
 
+var (
+	day = kingpin.Flag("day", "The day to run (1-25)").Short('d').Int()
+)
+
 func main() {
-	fmt.Println("Welcome to AoC 2019, by cruzzan")
+	kingpin.Parse()
 
-	day1.Task1()
-	day1.Task2()
+	logrus.Info("Welcome to AoC 2019, by cruzzan")
+	logrus.Info("Day ", *day)
 
-	day2.Task1()
-	day2.Task2()
-
-	day4.Task1()
-	day4.Task2()
-
-	day5.Task1()
-
-	day6.Task1()
-	day6.Task2()
+	switch *day {
+	case 1:
+		day1.Task1()
+		day1.Task2()
+		break
+	case 2:
+		day2.Task1()
+		day2.Task2()
+		break
+	case 3:
+		logrus.Info("Yeah.. this is not finished yet...")
+	case 4:
+		day4.Task1()
+		day4.Task2()
+		break
+	case 5:
+		day5.Task1()
+		break
+	case 6:
+		day6.Task1()
+		day6.Task2()
+		break
+	default:
+		logrus.Info("Yeah.. i haven't even started this one yet...")
+	}
 
 	os.Exit(0)
 }

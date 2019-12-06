@@ -3,8 +3,8 @@ package day4
 import "testing"
 
 func TestPasswordAcceptable(t *testing.T) {
-	cases := []struct{
-		in int
+	cases := []struct {
+		in   int
 		want bool
 	}{
 		{in: 122345, want: true},
@@ -23,8 +23,8 @@ func TestPasswordAcceptable(t *testing.T) {
 }
 
 func TestPasswordAcceptable2(t *testing.T) {
-	cases := []struct{
-		in int
+	cases := []struct {
+		in   int
 		want bool
 	}{
 		//{in: 112233, want: true},
