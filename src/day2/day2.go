@@ -15,7 +15,7 @@ func Task1() {
 	instructions[1] = 12
 	instructions[2] = 2
 
-	output := intcode.RunIntCodeProgram(instructions)
+	output, _ := intcode.RunIntCodeProgram(instructions, []int{})
 
 	fmt.Println("Task 1: Back up state", output[0])
 }

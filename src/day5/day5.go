@@ -11,16 +11,16 @@ func Task1() {
 	lines := inputReader.ReadCsv("resources/d5_t1.txt", ',')
 	instructions := InputConverter.StringToInt(lines[0])
 
-	fmt.Println("Task 1: TEST diagnostic (Give 1 as input)")
-	intcode.RunIntCodeProgram(instructions)
+	_, out := intcode.RunIntCodeProgram(instructions, []int{1})
 
+	fmt.Println("Task 1: TEST diagnostic", out[len(out)-1])
 }
 
 func Task2() {
 	lines := inputReader.ReadCsv("resources/d5_t1.txt", ',')
 	instructions := InputConverter.StringToInt(lines[0])
 
-	fmt.Println("Task 1: TEST diagnostic (Give 5 as input)")
-	intcode.RunIntCodeProgram(instructions)
+	_, out := intcode.RunIntCodeProgram(instructions, []int{5})
 
+	fmt.Println("Task 2: TEST diagnostic", out[len(out)-1])
 }

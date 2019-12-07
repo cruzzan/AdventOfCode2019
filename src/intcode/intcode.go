@@ -1,11 +1,11 @@
 package intcode
 
 import (
-	"fmt"
 	"github.com/sirupsen/logrus"
 )
 
-func RunIntCodeProgram(instructions []int) []int {
+func RunIntCodeProgram(instructions []int, inputs []int) ([]int, []int) {
+	outputs := make([]int, 0)
 	cur := 0
 	for cur <= len(instructions) {
 		opCode := getOpCode(instructions[cur])
@@ -29,9 +29,8 @@ func RunIntCodeProgram(instructions []int) []int {
 			cur += 4
 			break
 		case 3: // Input
-			var i int
-			fmt.Println("Make an input:")
-			fmt.Scan(&i)
+			i := inputs[0]
+			inputs = inputs[1:]
 
 			instructions[instructions[cur+1]] = i
 
@@ -39,7 +38,7 @@ func RunIntCodeProgram(instructions []int) []int {
 			break
 		case 4: // Output
 			out := getValue(instructions, p1Mode, cur+1)
-			fmt.Println(out)
+			outputs = append(outputs, out)
 
 			cur += 2
 			break
@@ -90,14 +89,14 @@ func RunIntCodeProgram(instructions []int) []int {
 			cur += 4
 			break
 		case 99:
-			return instructions
+			return instructions, outputs
 			break
 		default:
 			logrus.Fatalf("Shit, something went wrong we got OpCode %d at position %d, %#v", opCode, cur, instructions)
 		}
 	}
 
-	return []int{}
+	return []int{}, outputs
 }
 
 func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (int, int) {
@@ -111,7 +110,7 @@ func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (in
 			i[1] = in1
 			i[2] = in2
 
-			res := RunIntCodeProgram(i)
+			res, _ := RunIntCodeProgram(i, []int{})
 
 			if output == res[0] {
 				return in1, in2
