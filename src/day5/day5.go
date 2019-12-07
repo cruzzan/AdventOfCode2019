@@ -10,17 +10,37 @@ import (
 func Task1() {
 	lines := inputReader.ReadCsv("resources/d5_t1.txt", ',')
 	instructions := InputConverter.StringToInt(lines[0])
+	in := make(chan int)
+	out := make(chan int)
+	halt := make(chan intcode.HaltObject)
 
-	_, out := intcode.RunIntCodeProgram(instructions, []int{1})
+	go intcode.RunIntCodeProgram(instructions, in, out, halt)
 
-	fmt.Println("Task 1: TEST diagnostic", out[len(out)-1])
+	in<-1
+
+	outputs := make([]int, 0)
+	for o := range out{
+		outputs = append(outputs, o)
+	}
+
+	fmt.Println("Task 1: TEST diagnostic", outputs[len(outputs)-1])
 }
 
 func Task2() {
 	lines := inputReader.ReadCsv("resources/d5_t1.txt", ',')
 	instructions := InputConverter.StringToInt(lines[0])
+	in := make(chan int)
+	out := make(chan int)
+	halt := make(chan intcode.HaltObject)
 
-	_, out := intcode.RunIntCodeProgram(instructions, []int{5})
+	go intcode.RunIntCodeProgram(instructions, in, out, halt)
 
-	fmt.Println("Task 2: TEST diagnostic", out[len(out)-1])
+	in<-5
+
+	outputs := make([]int, 0)
+	for o := range out{
+		outputs = append(outputs, o)
+	}
+
+	fmt.Println("Task 2: TEST diagnostic", outputs[len(outputs)-1])
 }

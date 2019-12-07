@@ -10,14 +10,19 @@ import (
 func Task1() {
 	lines := inputReader.ReadCsv("resources/d2_t1.txt", ',')
 	instructions := InputConverter.StringToInt(lines[0])
+	in := make(chan int)
+	out := make(chan int)
+	halt := make(chan intcode.HaltObject)
 
 	// Prep the input data
 	instructions[1] = 12
 	instructions[2] = 2
 
-	output, _ := intcode.RunIntCodeProgram(instructions, []int{})
+	go intcode.RunIntCodeProgram(instructions, in, out, halt)
 
-	fmt.Println("Task 1: Back up state", output[0])
+	hobj := <-halt
+
+	fmt.Println("Task 1: Back up state", hobj.Instructions[0])
 }
 
 func Task2() {

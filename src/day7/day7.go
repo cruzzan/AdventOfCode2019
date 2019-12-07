@@ -17,10 +17,18 @@ func Task1() {
 	for _, phaseSet := range p {
 		prevOutput := 0
 		for i := 0; i < 5; i++ {
-			inputs := []int{phaseSet[i], prevOutput}
-			_, outputs := intcode.RunIntCodeProgram(instructions, inputs)
+			in := make(chan int)
+			out := make(chan int)
+			halt := make(chan intcode.HaltObject)
 
-			prevOutput = outputs[len(outputs)-1]
+			go intcode.RunIntCodeProgram(instructions, in, out, halt)
+
+			in<-phaseSet[i]
+			in<-prevOutput
+
+			for o := range out {
+				prevOutput = o
+			}
 		}
 
 		if prevOutput > highestOutput {

@@ -22,7 +22,13 @@ func TestRunIntCodeProgram(t *testing.T) {
 	}
 
 	for _, c := range cases {
-		got, _ := RunIntCodeProgram(c.in, []int{})
+		in := make(chan int)
+		out := make(chan int)
+		halt := make(chan HaltObject)
+		go RunIntCodeProgram(c.in, in, out, halt)
+
+		hobj := <-halt
+		got := hobj.Instructions
 
 		if len(got) != len(c.want) {
 			t.Fatalf("Failed asserting that the slices were the same length, got %d, expected %d", len(got), len(c.want))

@@ -1,11 +1,14 @@
 package intcode
 
 import (
-	"github.com/sirupsen/logrus"
+	"fmt"
 )
 
-func RunIntCodeProgram(instructions []int, inputs []int) ([]int, []int) {
-	outputs := make([]int, 0)
+type HaltObject struct {
+	Instructions []int
+}
+
+func RunIntCodeProgram(instructions []int, inChan chan int, outChan chan int, haltChan chan HaltObject) {
 	cur := 0
 	for cur <= len(instructions) {
 		opCode := getOpCode(instructions[cur])
@@ -29,8 +32,7 @@ func RunIntCodeProgram(instructions []int, inputs []int) ([]int, []int) {
 			cur += 4
 			break
 		case 3: // Input
-			i := inputs[0]
-			inputs = inputs[1:]
+			i := <-inChan
 
 			instructions[instructions[cur+1]] = i
 
@@ -38,7 +40,8 @@ func RunIntCodeProgram(instructions []int, inputs []int) ([]int, []int) {
 			break
 		case 4: // Output
 			out := getValue(instructions, p1Mode, cur+1)
-			outputs = append(outputs, out)
+
+			outChan<-out
 
 			cur += 2
 			break
@@ -88,15 +91,16 @@ func RunIntCodeProgram(instructions []int, inputs []int) ([]int, []int) {
 			instructions[instructions[cur+3]] = output
 			cur += 4
 			break
-		case 99:
-			return instructions, outputs
-			break
+		case 99: // Halt
+			close(outChan)
+			haltChan<-HaltObject{
+				Instructions:instructions,
+			}
+			return
 		default:
-			logrus.Fatalf("Shit, something went wrong we got OpCode %d at position %d, %#v", opCode, cur, instructions)
+			fmt.Printf("Shit, something went wrong we got OpCode %d at position %d, %#v\n", opCode, cur, instructions)
 		}
 	}
-
-	return []int{}, outputs
 }
 
 func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (int, int) {
@@ -110,9 +114,15 @@ func ReverseIntCodeProgram(instructions []int, output int, min int, max int) (in
 			i[1] = in1
 			i[2] = in2
 
-			res, _ := RunIntCodeProgram(i, []int{})
+			in := make(chan int)
+			out := make(chan int)
+			halt := make(chan HaltObject)
+			go RunIntCodeProgram(i, in, out, halt)
 
-			if output == res[0] {
+			hObj := <-halt
+
+
+			if output == hObj.Instructions[0] {
 				return in1, in2
 			}
 		}
