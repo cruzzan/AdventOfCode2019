@@ -47,6 +47,7 @@ func main() {
 		break
 	case 7:
 		day7.Task1()
+		day7.Task2()
 		break
 	default:
 		logrus.Info("Yeah.. i haven't even started this one yet...")
