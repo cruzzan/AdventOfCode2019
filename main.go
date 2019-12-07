@@ -6,6 +6,7 @@ import (
 	"AdventOfCode2019/src/day4"
 	"AdventOfCode2019/src/day5"
 	"AdventOfCode2019/src/day6"
+	"AdventOfCode2019/src/day7"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"os"
@@ -43,6 +44,9 @@ func main() {
 	case 6:
 		day6.Task1()
 		day6.Task2()
+		break
+	case 7:
+		day7.Task1()
 		break
 	default:
 		logrus.Info("Yeah.. i haven't even started this one yet...")
