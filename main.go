@@ -38,6 +38,7 @@ func main() {
 		break
 	case 5:
 		day5.Task1()
+		day5.Task2()
 		break
 	case 6:
 		day6.Task1()

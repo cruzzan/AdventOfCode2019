@@ -14,21 +14,21 @@ func RunIntCodeProgram(instructions []int) []int {
 		//p3Mode := getParam3Mode(instructions[cur])
 
 		switch opCode {
-		case 1:
+		case 1: // Addition
 			in1 := getValue(instructions, p1Mode, cur+1)
 			in2 := getValue(instructions, p2Mode, cur+2)
 			instructions[instructions[cur+3]] = in1 + in2
 
 			cur += 4
 			break
-		case 2:
+		case 2: // Multiplication
 			in1 := getValue(instructions, p1Mode, cur+1)
 			in2 := getValue(instructions, p2Mode, cur+2)
 			instructions[instructions[cur+3]] = in1 * in2
 
 			cur += 4
 			break
-		case 3:
+		case 3: // Input
 			var i int
 			fmt.Println("Make an input:")
 			fmt.Scan(&i)
@@ -37,11 +37,57 @@ func RunIntCodeProgram(instructions []int) []int {
 
 			cur += 2
 			break
-		case 4:
+		case 4: // Output
 			out := getValue(instructions, p1Mode, cur+1)
 			fmt.Println(out)
 
 			cur += 2
+			break
+		case 5: // Jump if non-zero
+			val := getValue(instructions, p1Mode, cur+1)
+			jmp := getValue(instructions, p2Mode, cur+2)
+
+			if val != 0 {
+				cur = jmp
+				break
+			}
+
+			cur += 3
+			break
+		case 6: // Jump if zero
+			val := getValue(instructions, p1Mode, cur+1)
+			jmp := getValue(instructions, p2Mode, cur+2)
+
+			if val == 0 {
+				cur = jmp
+				break
+			}
+
+			cur += 3
+			break
+		case 7: // Less than
+			in1 := getValue(instructions, p1Mode, cur+1)
+			in2 := getValue(instructions, p2Mode, cur+2)
+			output := 0
+
+			if in1 < in2 {
+				output = 1
+			}
+
+			instructions[instructions[cur+3]] = output
+			cur += 4
+			break
+		case 8: // Equal
+			in1 := getValue(instructions, p1Mode, cur+1)
+			in2 := getValue(instructions, p2Mode, cur+2)
+			output := 0
+
+			if in1 == in2 {
+				output = 1
+			}
+
+			instructions[instructions[cur+3]] = output
+			cur += 4
 			break
 		case 99:
 			return instructions
